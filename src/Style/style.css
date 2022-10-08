@@ -1,0 +1,148 @@
+:root{
+    --black:rgb(22, 22, 22);
+    --white:#FCF8E8;
+    --whiteLowOpacity:#F8EDE3;
+    --greenLight:#3D8361;
+    --grey:#212121;
+    --beige:#D6CDA4;
+    --darkGrey:#100F0F;
+    --orange:#FF9F29;
+    --orangeDarker:#b2701f;
+}
+*{
+    box-sizing: border-box;
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2rem;
+}
+#root{
+    background-color:var(--darkGrey);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator-div{
+    background-color: #212121;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 30rem;
+    height: 35rem;
+   border: 2px solid var(--white);
+}
+.keypad-div{
+    
+	background-color:var(--grey);
+	display: grid;
+    grid-template-rows: 5rem 5rem 5rem 5rem 5rem  ;
+    grid-template-columns: 6rem 6rem 6rem 6rem ;
+    justify-items: center;
+    align-items: center;
+    gap: 0.3rem;
+}
+#display-div{
+    background-color: var(--grey);
+    width: 100%;
+    
+    height: 6.5rem;
+    margin: 0.7rem;
+    padding: 0.8rem;
+    color: var(--orange);
+    text-align: right;
+}
+#operation-div{
+    text-align: right;
+    padding-bottom: 0.8rem;
+    font-size: 3rem;
+
+}
+#result-div{
+    
+}
+#display-div:focus {
+    outline: none /* Removes the border when the input is clicked */
+}
+#keyboard{
+    list-style: none;
+    background-color: whitesmoke;
+
+}
+.button{
+    background-color:var(--white);
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border-radius: 2px;
+    user-select: none;
+}
+
+.button:hover{
+    background-color: var(--orange);
+    color: var(--white);
+}
+.button:active{
+    background-color: var(--orangeDarker);
+}
+.operation-button{
+    background-color:var(--darkGrey);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--white);
+    border-radius: 2px;
+    user-select: none;
+}
+.operation-button:hover{
+    background-color: var(--orange);
+    color: var(--white);
+}
+.operation-button:active{
+    background-color: var(--orangeDarker);
+}
+
+
+#equal{
+    background-color:#797979;
+   width: 155%;
+   position: relative;
+   left: 75.4%;
+}
+#equal:hover{
+    background-color: var(--orange);
+    color: var(--white);
+}
+#equal:active{
+    background-color: var(--orangeDarker);
+}
+#logo{
+     background-color: var(--black);
+   
+}
+#n0{
+    width: 150%;
+    position: relative;
+    left: 25%;
+}
+#dot{
+    position: relative;
+    left: 49%;
+}
+#logo{
+    border: 0px;
+    background-color: var(--grey);
+}
+
+
+
+
