@@ -16,8 +16,9 @@ export default function Calculator() {
         if (className === "operation-button") {
             switch (textContent) {
                 case " + ":
-                    //console.log("inputtext:" + parseFloat(inputText))
+                    console.log("inputtext:" +inputText)
                     setResult(prev => prev + parseFloat(inputText))
+                    console.log(result)
                     setInputText(test);
                     break;
                 case "C":
