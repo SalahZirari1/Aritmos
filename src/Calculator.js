@@ -6,29 +6,30 @@ export default function Calculator() {
     const [inputText, setInputText] = useState("");
     const [history, setHistory] = useState([]);
     const [result, setResult] = useState(0);
+    const [currentNumber, setCurrentNumebr] = useState("");
 
-    function handleClick(event) {
+    function handleClick(event) {  //update display/add nums/decide next operation
         const textContent = event.target.textContent;
-        setInputText(prev => prev + textContent);
-
         const className = event.target.className;
-        const test = result
-        if (className === "operation-button") {
-            switch (textContent) {
-                case " + ":
-                    console.log("inputtext:" +inputText)
-                    setResult(prev => prev + parseFloat(inputText))
-                    console.log(result)
-                    setInputText(test);
-                    break;
-                case "C":
-                    setResult(0);
-                    setInputText("");
-                    setHistory([]);
-                    break
-            }}
+        
+        setInputText(prev => prev + textContent); 
+
     }
-    //console.log("result:" + result)
+
+    //setCurrentNumebr(prev => handleClick.className != "operation-button" ?  prev+textContent :"")
+    console.log(inputText)
+    function calculate(operation) {
+    }
+
+
+
+
+
+
+
+
+
+
     return (
         <div className="calculator-div">
 
