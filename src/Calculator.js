@@ -1,3 +1,4 @@
+import { prettyDOM } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import Buttons from "./Components/Buttons";
 
@@ -13,11 +14,13 @@ export default function Calculator() {
         const className = event.target.className;
         
         setInputText(prev => prev + textContent); 
-
+        setCurrentNumebr(prev => className !== "operation-button" ?  prev+textContent :null)
+        setHistory(prev => className === "operation-button" ? [...prev,currentNumber]:[...prev] )
     }
 
-    //setCurrentNumebr(prev => handleClick.className != "operation-button" ?  prev+textContent :"")
     console.log(inputText)
+    console.log(currentNumber)
+    console.log(history)
     function calculate(operation) {
     }
 
