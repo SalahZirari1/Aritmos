@@ -13,28 +13,23 @@ export default function Calculator() {
         const className = event.target.className;
         
         if(lastEntered === "operation-button" && className==="operation-button") return;
+        console.log(history.length)
+        if(history.length>1 && className === "operation-button") console.log("calculate")
 
         setInputText(prev => prev + textContent);
         setCurrentNumebr(prev => className !== "operation-button" ? prev + textContent :"")
         setHistory(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
-        //if() calculate()
         setLastEntered(className)
     }
 
     
-   /*  console.log(inputText)
+   /* console.log(inputText)
     console.log(currentNumber)
     console.log(history) */
  
     function calculate(operation) {
 
     }
-
-
-
-
-
-
 
 
 
