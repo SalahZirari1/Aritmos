@@ -1,27 +1,33 @@
-import { prettyDOM } from "@testing-library/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Buttons from "./Components/Buttons";
 
 export default function Calculator() {
 
     const [inputText, setInputText] = useState("");
     const [history, setHistory] = useState([]);
-    const [result, setResult] = useState(0);
+    const [lastEntered, setLastEntered] = useState("");
     const [currentNumber, setCurrentNumebr] = useState("");
 
     function handleClick(event) {  //update display/add nums/decide next operation
         const textContent = event.target.textContent;
         const className = event.target.className;
         
-        setInputText(prev => prev + textContent); 
-        setCurrentNumebr(prev => className !== "operation-button" ?  prev+textContent :null)
-        setHistory(prev => className === "operation-button" ? [...prev,currentNumber]:[...prev] )
+        if(lastEntered === "operation-button" && className==="operation-button") return;
+
+        setInputText(prev => prev + textContent);
+        setCurrentNumebr(prev => className !== "operation-button" ? prev + textContent :"")
+        setHistory(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
+        //if() calculate()
+        setLastEntered(className)
     }
 
-    console.log(inputText)
+    
+   /*  console.log(inputText)
     console.log(currentNumber)
-    console.log(history)
+    console.log(history) */
+ 
     function calculate(operation) {
+
     }
 
 
@@ -38,7 +44,7 @@ export default function Calculator() {
 
             <div id="display-div">
                 <div id="operation-div">{inputText}</div>
-                <div id="result-div">{result}</div>
+                <div id="result-div"></div>
             </div>
             <Buttons onClick={handleClick} />
         </div>
