@@ -9,56 +9,58 @@ export default function Calculator() {
     const [numberEntered, setNumberEntered] = useState([]);
     const [lastClicked, setLastClicked] = useState("");
     const [currentNumber, setCurrentNumebr] = useState("");
-    const [result, setResult] = useState(2);
-    const [memory,setMemory]=useState([]);
+    const [result, setResult] = useState(0);
+    const [memory, setMemory] = useState([]);
 
-    
-    
+
     function handleClick(event) {  //update display/add nums/decide next operation
         const textContent = event.target.textContent;
         const className = event.target.className;
 
-        if (lastClicked === "operation-button" && className === "operation-button") return;
+        if (lastClicked === "operation-button" && className === "operation-button" && textContent !="C") return;
+        if (textContent==="C") {reset();return;}
 
-        
+
         setInputText(prev => prev + textContent);
-        setCurrentNumebr(prev => className !== "operation-button" ? prev + textContent : "")
-        setNumberEntered(prev => className === "operation-button" ? [...prev,currentNumber] : [...prev]) 
+        setCurrentNumebr(prev => className !== "operation-button" ? prev + textContent : prev)
+        setNumberEntered(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setLastClicked(className)
-        setMemory([className,textContent,currentNumber])
-        
+        setMemory([className, textContent, currentNumber])
     }
-    console.log(numberEntered)
-    console.log(memory)
+    console.log(parseFloat(currentNumber))
+    if(result===0) setResult(parseFloat(currentNumber)) // goal is to set result to the first number entred and solve current number NAN error
+    //console.log(memory[2])
     if (numberEntered.length > 1 && memory[0] === "operation-button") calculate(memory[1])
 
     function calculate(operation) {
-          /* console.log("in")
-        console.log(operation) */
+
         switch (operation) {
             case " + ":
-                console.log('in')
+                
                 var newNum = parseFloat(memory[2])
-
-                useEffect(
-                    //setResult(prev=> prev + newNum),[] 
-                )
-                console.log(result)
+                //console.log(result)
+                setResult(prev => prev + newNum)
+                setMemory([])
                 
                 break;
-        }
-
+            }
     }
 
-
-
+    function reset(){
+        setInputText("")
+        setNumberEntered([])
+        setLastClicked("")
+        setCurrentNumebr("")
+        setResult(0)
+        setMemory([])
+    }
 
     return (
         <div className="calculator-div">
 
             <div id="display-div">
                 <div id="operation-div">{inputText}</div>
-                <div id="result-div"></div>
+                <div id="result-div">{result}</div>
             </div>
             <Buttons onClick={handleClick} />
         </div>
