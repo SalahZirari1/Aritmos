@@ -25,12 +25,15 @@ export default function Calculator() {
         setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(textContent) : prev)
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setLastClickedClass(className)
-        setMemory([className, textContent, currentNumber])
+        setMemory([className, textContent, currentNumber]);
+        firstNumRendering()
+        
     }
-    console.log(currentNumber)
-
-    useEffect( ()=> setResult(parseFloat(currentNumber===""?0:currentNumber)) ,[])
-
+    function firstNumRendering(){
+        if(numbersEnteredArray.length<2) setResult(parseFloat(currentNumber===""?0:currentNumber))
+    }
+    
+    console.log(result)
     if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
 
     function calculate(operation) {
