@@ -13,7 +13,7 @@ export default function Calculator() {
     const [memory, setMemory] = useState([]);
 
 
-    function handleClick(event) {  //update display/add nums/decide next operation
+    function handleClick(event) { 
         const textContent = event.target.textContent;
         const className = event.target.className;
 
@@ -27,13 +27,12 @@ export default function Calculator() {
         setLastClickedClass(className)
         setMemory([className, textContent, currentNumber]);
         firstNumRendering()
-        
     }
     function firstNumRendering(){
         if(numbersEnteredArray.length<2) setResult(parseFloat(currentNumber===""?0:currentNumber))
     }
     
-    console.log(result)
+    console.log(memory[2])
     if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
 
     function calculate(operation) {
@@ -55,14 +54,13 @@ export default function Calculator() {
         setCurrentNumebr("")
         setResult(0)
         setMemory([])
-    }
-    //console.log(result)
+}
     return (
         <div className="calculator-div">
 
             <div id="display-div">
-                <div id="operation-div">{inputText}</div>
-                <div id="result-div">{isNaN(result)?0:result}</div>
+                <div id="operation-div">{isNaN(result)?0:result}</div>
+                <div id="result-div">{inputText}</div>
             </div>
             <Buttons onClick={handleClick} />
         </div>
