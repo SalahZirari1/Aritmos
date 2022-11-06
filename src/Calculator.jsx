@@ -1,6 +1,4 @@
-import { type } from "@testing-library/user-event/dist/type";
 import React, {useState } from "react";
-import { useEffect } from "react";
 import Buttons from "./Components/Buttons";
 
 export default function Calculator() {
@@ -32,16 +30,17 @@ export default function Calculator() {
         if(numbersEnteredArray.length<2) setResult(parseFloat(currentNumber===""?0:currentNumber))
     }
     
-    console.log(memory[2])
     if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
 
     function calculate(operation) {
         switch (operation) {
             case " + ":
-                
+                console.log(numbersEnteredArray.length)
                 var newNum = parseFloat(memory[2])
                 setResult(prev => prev + newNum)
+                numbersEnteredArray.length>1?setInputText(result+newNum+" + ") : setInputText(result+newNum)
                 setMemory([])
+                if(numbersEnteredArray.length>1)
                 
                 break;
             }
