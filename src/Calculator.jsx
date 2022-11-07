@@ -20,14 +20,17 @@ export default function Calculator() {
 
 
         setInputText(prev => prev + textContent);
-        setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(textContent) : prev)
+        
+        setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(prev+textContent) : prev) //find a way to get the whole numgber not just latest digit
+        
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setLastClickedClass(className)
         setMemory([className, textContent, currentNumber]);
         firstNumRendering()
     }
+    console.log(currentNumber)
     function firstNumRendering(){
-        if(numbersEnteredArray.length<2) setResult(parseFloat(currentNumber===""?0:currentNumber))
+        if(numbersEnteredArray.length<2) console.log("in") //setResult(parseFloat(currentNumber===""?0:currentNumber))
     }
     
     if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
