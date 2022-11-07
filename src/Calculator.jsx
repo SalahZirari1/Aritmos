@@ -12,6 +12,7 @@ export default function Calculator() {
 
 
     function handleClick(event) { 
+
         const textContent = event.target.textContent;
         const className = event.target.className;
 
@@ -20,31 +21,30 @@ export default function Calculator() {
 
 
         setInputText(prev => prev + textContent);
-        
-        setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(prev+textContent) : prev) //find a way to get the whole numgber not just latest digit
-        
+        setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(prev+textContent) : "") 
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setLastClickedClass(className)
         setMemory([className, textContent, currentNumber]);
-        firstNumRendering()
     }
-    console.log(currentNumber)
-    function firstNumRendering(){
-        if(numbersEnteredArray.length<2) console.log("in") //setResult(parseFloat(currentNumber===""?0:currentNumber))
-    }
+   
     
     if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
+    
 
     function calculate(operation) {
         switch (operation) {
             case " + ":
-                console.log(numbersEnteredArray.length)
                 var newNum = parseFloat(memory[2])
                 setResult(prev => prev + newNum)
-                numbersEnteredArray.length>1?setInputText(result+newNum+" + ") : setInputText(result+newNum)
-                setMemory([])
-                if(numbersEnteredArray.length>1)
-                
+                numbersEnteredArray.length>1 ? setInputText(result+newNum+" + ") : setInputText(result+newNum)
+                setMemory([])                
+                break;
+            
+            case " - ":
+                var newNum = parseFloat(memory[2])
+                setResult(prev => prev - newNum)
+                numbersEnteredArray.length>1 ? setInputText(result-newNum+" - ") : setInputText(result-newNum)
+                setMemory([])                
                 break;
             }
     }
