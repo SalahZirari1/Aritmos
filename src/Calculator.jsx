@@ -25,11 +25,15 @@ export default function Calculator() {
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setLastClickedClass(className)
         setMemory([className, textContent, currentNumber]);
+
     }
    
+    // fix first num rendering
+    if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") {setResult(memory[2]);calculate(memory[1])}
     
-    if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
-    
+    console.log("NumbersEntered:"+numbersEnteredArray)
+    console.log("prevResult:"+result)
+    console.log("currentNumber:"+memory[2])
 
     function calculate(operation) {
         switch (operation) {
