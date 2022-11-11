@@ -5,12 +5,13 @@ export default function Calculator() {
 
     const [inputText, setInputText] = useState("");
     const [numbersEnteredArray, setNumbersEnteredArray] = useState([]);
-    const [lastClickedClass, setLastClickedClass] = useState("");
+    const [lastClickedClass, setLastClickedClass] = useState([]);
     const [currentNumber, setCurrentNumebr] = useState("");
     const [result, setResult] = useState(0);
     const [memory, setMemory] = useState([]);
 
 
+    // needs to remember last operation entered
     function handleClick(event) { 
 
         const textContent = event.target.textContent;
@@ -22,14 +23,14 @@ export default function Calculator() {
         setInputText(prev => prev + textContent);
         setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(prev+textContent) : "") 
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
-        setLastClickedClass(className)
+        setLastClickedClass([className,textContent])
         setMemory([className, textContent, currentNumber]);
         
     }
     
     //DONT TOUCH THIS 
     //without this the first num entered doesnt count i.e 2+3=3
-    if (memory[0] === "operation-button" && numbersEnteredArray.length==1) {setResult(numbersEnteredArray[0]);setMemory([]);}
+    if (memory[0] === "operation-button" && numbersEnteredArray.length===1) {setResult(numbersEnteredArray[0]);setMemory([]);}
     
     //triggers the calculation method when there are two numbers
     if (numbersEnteredArray.length > 1 && memory[0] === "operation-button") calculate(memory[1])
@@ -54,6 +55,7 @@ export default function Calculator() {
                 numbersEnteredArray.length>1 ? setInputText(result-newNum+" - ") : setInputText(result-newNum)
                 setMemory([])                
                 break;
+            default:
             }
     }
 
