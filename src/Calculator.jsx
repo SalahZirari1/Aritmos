@@ -24,10 +24,12 @@ export default function Calculator() {
         setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(prev+textContent) : "") 
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setLastClickedClass([className,textContent])
-        setMemory([className, textContent, currentNumber]);
+        setMemory([className, textContent, currentNumber,[className==="operation-button"?textContent:"",this.length>0 && className==="operation-button"?//put behavior here ]]); 
         
     }
     
+    console.log(memory[3])
+
     //DONT TOUCH THIS 
     //without this the first num entered doesnt count i.e 2+3=3
     if (memory[0] === "operation-button" && numbersEnteredArray.length===1) {setResult(numbersEnteredArray[0]);setMemory([]);}
