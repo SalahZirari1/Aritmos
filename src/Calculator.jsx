@@ -111,3 +111,6 @@ export default function Calculator() {
     )
 }
 
+//TODO:
+//prevent equals as 1st op
+//include decimal numbers
