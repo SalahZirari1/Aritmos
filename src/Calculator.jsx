@@ -20,9 +20,9 @@ export default function Calculator() {
 
 
         if (textContent === "C") { reset(); return; }
-        if(OperationChanged(className, textContent)) {console.log("In"); return;}
+        if(OperationChanged(className, textContent)) return;
 
-        setInputText(prev => prev + textContent); //3+ // [-,+]
+        setInputText(prev => prev + textContent);
         setCurrentNumebr(prev => className !== "operation-button" ? parseFloat(prev + textContent) : "")
         setNumbersEnteredArray(prev => className === "operation-button" ? [...prev, currentNumber] : [...prev])
         setOperationsEntered(prev => {
@@ -41,7 +41,6 @@ export default function Calculator() {
     //handles consequetive operations clicks
     function OperationChanged(className, textContent) {
         if (lastClickedOp[0] === "operation-button" && className === "operation-button" && textContent !== "C") {
-            console.log("in2")
             if (textContent !== lastClickedOp[1]) {setInputText(result + textContent); setOperationsEntered(prev=>[prev[0],textContent])}
             return true;
         }
@@ -57,7 +56,13 @@ export default function Calculator() {
 
     function calculate(operation, displayOp) {
        
-        switch (operation,displayOp) {
+       if (displayOp === "=") {
+           calculate(operation,"")
+           setInputText(result+operation+memory[2]+displayOp)
+           return
+        }
+
+        switch (operation) {
             case " + ":
                 var newNum = parseFloat(memory[2])
                 setResult(prev => prev + newNum)
@@ -83,8 +88,6 @@ export default function Calculator() {
                 numbersEnteredArray.length > 1 ? setInputText(result * newNum + displayOp) : setInputText(result * newNum)
                 setMemory([])
                 break;
-            case " = ":
-                calculate(operation,"")
             default:
         }
     }
