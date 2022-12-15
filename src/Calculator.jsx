@@ -18,7 +18,8 @@ export default function Calculator() {
         const textContent = event.target.textContent;
         const className = event.target.className;
 
-
+        console.log(textContent)
+        if(textContent ==="=" && inputText ==="") return;
         if (textContent === "C") { reset(); return; }
         if(OperationChanged(className, textContent)) return;
 
@@ -112,5 +113,6 @@ export default function Calculator() {
 }
 
 //TODO:
-//prevent equals as 1st op
-//include decimal numbers
+// include decimal numbers
+// make del work
+// add history
