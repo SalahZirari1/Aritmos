@@ -19,7 +19,7 @@ export default function Calculator() {
         const className = event.target.className;
 
         console.log(textContent)
-        if(className==="operation-button" && inputText ==="") return;
+        if(className==="operation-button" && inputText ==="") return;  
         if (textContent === "C") { reset(); return; }
         if(OperationChanged(className, textContent)) return;
 
